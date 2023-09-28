@@ -1,5 +1,5 @@
 [MASTER]
-ignore=migrations
+ignore=tests
 ignore-patterns=test_.*?p,stubs.*?p
 
 [MESSAGES CONTROL]
