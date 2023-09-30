@@ -1,7 +1,7 @@
 from typing import List
 
-from scrappers.filmweb.scrapper import FilmInfo
-from scrappers.filmweb.scrapper import FilmInfoNoAlternate
+from common.models import FilmInfo
+from common.models import FilmInfoNoAlternate
 from scrappers.filmweb.scrapper import FilmwebScrapper
 from scrappers.filmweb.tests.examples import example
 

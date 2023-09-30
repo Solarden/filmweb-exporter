@@ -6,8 +6,8 @@ from requests import RequestException
 from requests import Response
 from requests import Session
 
-import settings
 from connectors.filmweb.exceptions import FilmwebConnectionError
+from core import settings
 
 
 class FilmwebConnector:

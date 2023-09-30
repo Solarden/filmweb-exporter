@@ -1,27 +1,10 @@
 import re
-from dataclasses import dataclass
 from typing import List
 from typing import Optional
 from typing import Union
 
-
-@dataclass
-class FilmInfo:
-    """Film info dataclass."""
-
-    film_id: str
-    film_title: str
-    film_alternate_title: str
-    film_year: str
-
-
-@dataclass
-class FilmInfoNoAlternate:
-    """ "Film info dataclass without alternate title."""
-
-    film_id: str
-    film_title: str
-    film_year: str
+from common.models import FilmInfo
+from common.models import FilmInfoNoAlternate
 
 
 class FilmwebScrapper:

@@ -2,9 +2,10 @@ from typing import List
 from typing import Optional
 from typing import Union
 
+from common.models import FilmInfo
+from common.models import FilmInfoNoAlternate
 from connectors.filmweb.connector import FilmwebConnector
-from scrappers.filmweb.scrapper import FilmInfo
-from scrappers.filmweb.scrapper import FilmInfoNoAlternate
+from core.database import FilmwebDatabase
 from scrappers.filmweb.scrapper import FilmwebScrapper
 
 
@@ -13,6 +14,7 @@ class FilmwebService:
 
     def __init__(self, username: Optional[str] = None) -> None:
         self._filmweb_connector = FilmwebConnector(username=username, timeout=10)
+        self.database = FilmwebDatabase()
 
     def update_username(self, username: str) -> None:
         """Update username."""
@@ -25,4 +27,6 @@ class FilmwebService:
     def get_user_films(self, page: int = 1) -> List[Optional[Union[FilmInfo, FilmInfoNoAlternate]]]:
         """Get user films."""
         response: str = self._filmweb_connector.get_user_films(page=page)
-        return FilmwebScrapper.get_any_filmweb_movie_info(response)
+        scrapper_response = FilmwebScrapper.get_any_filmweb_movie_info(response)
+        self.database.add_film_info(scrapper_response)
+        return scrapper_response
